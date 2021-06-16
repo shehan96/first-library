@@ -100,6 +100,37 @@
           }
         }
       }
+    },
+    "shehan-lib": {
+      "projectType": "library",
+      "root": "projects/shehan-lib",
+      "sourceRoot": "projects/shehan-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/shehan-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shehan-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/shehan-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/shehan-lib/src/test.ts",
+            "tsConfig": "projects/shehan-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/shehan-lib/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "first-library"
