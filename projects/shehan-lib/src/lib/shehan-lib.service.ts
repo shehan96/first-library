@@ -7,9 +7,4 @@ export class ShehanLibService {
 
   constructor() { }
 
-  hure(){
-    console.log('Im the service');
-  }
-
-  
 }

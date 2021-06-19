@@ -1,10 +1,11 @@
 {
   "name": "@shehan96/shehan-lib",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^12.0.4",
     "@angular/core": "^12.0.4"
   },
+  "keywords": ["first","library"],
   "dependencies": {
     "tslib": "^2.1.0"
   }
