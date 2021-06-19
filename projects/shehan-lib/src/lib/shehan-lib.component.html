@@ -14,7 +14,7 @@
 <div class="filter-gallery">
     <div class="filter-gallery-row">
         <div class="filter-gallery-column" *ngFor="let imageArray of _images" [ngClass]="getColumnClass()">
-            <img [@openClose]="'open'" *ngFor="let image of imageArray" [src]="image.imageUrl" />
+            <img [@inOutAnimation]="isOpen" *ngFor="let image of imageArray" [src]="image.imageUrl" />
         </div>
     </div>
 </div>

@@ -22,15 +22,28 @@ export interface AGFLabels {
   templateUrl: './shehan-lib.component.html',
   styleUrls: ['./shehan-lib.component.css'],
   animations: [
-    trigger('openClose', [
-      state('open', style({
-        opacity: 1,
-      })),
-      transition('open => close', [
-        animate('2s')
-      ])
-    ]),
-  ],
+    trigger(
+      'inOutAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({ opacity: 0 }),
+            animate('1s ease-out',
+            style({ opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({ opacity: 1 }),
+            animate('1s ease-in',
+            style({ opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 
 export class ShehanLibComponent implements OnInit {
@@ -42,7 +55,7 @@ export class ShehanLibComponent implements OnInit {
 
   // define variables for internal usage
   _images: any[];
-  isOpen: boolean = true;
+  isOpen: boolean = false;
 
   constructor() { }
 
