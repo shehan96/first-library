@@ -1,53 +1,157 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations'
 
-export interface IImages {
+export interface AGFImages {
   imageUrl: string;
   imageLabel: string;
-  imageName ?: string;
-  imageDes ?: string;
-  imageLink ?: string;
+  imageName?: string;
+  imageDes?: string;
+  imageLink?: string;
 }
 
-export interface IOptions {
+export interface AGFOptions {
+  columns?: number;
+}
+
+export interface AGFLabels {
+  label: string;
 }
 
 @Component({
   selector: 'lib-shehan-lib',
   templateUrl: './shehan-lib.component.html',
-  styleUrls: [ './shehan-lib.component.css' ],
+  styleUrls: ['./shehan-lib.component.css'],
   animations: [
     trigger('openClose', [
       state('open', style({
-        height: '200px',
         opacity: 1,
-        backgroundColor: 'yellow'
       })),
-      state('closed', style({
-        height: '100px',
-        opacity: 0.8,
-        backgroundColor: '#c6ecff'
-      })),
-      transition('open => closed', [
-        animate('1s')
-      ]),
-      transition('closed => open', [
-        animate('0.5s')
-      ]),
+      transition('open => close', [
+        animate('2s')
+      ])
     ]),
   ],
 })
 
 export class ShehanLibComponent implements OnInit {
 
-  // define variables
-  @Input() images : IImages[];
-  @Input() options : IOptions;
-  @Input() labels : string[];
+  // define variables for user inputs
+  @Input() images: AGFImages[];
+  @Input() options: AGFOptions;
+  @Input() labels: AGFLabels[];
+
+  // define variables for internal usage
+  _images: any[];
+  isOpen: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.isEmptyObject(this.options)) {
+      console.log('no options')
+    }
+    else {
+      // split images array into column chunks
+      let tempArray = this.images.slice();
+      if ('columns' in this.options) {
+        switch (this.options.columns) {
+          case 2:
+            this.splitToChunks(tempArray, 2);
+            break;
+          case 3:
+            this.splitToChunks(tempArray, 3);
+            break;
+          case 4:
+            this.splitToChunks(tempArray, 4);
+            break;
+          case 5:
+            this.splitToChunks(tempArray, 5);
+            break;
+          default:
+            this.splitToChunks(tempArray, 4);
+            break;
+        }
+      }
+      else {
+        this.splitToChunks(tempArray, 4);
+      }
+    }
+  }
+
+  isEmptyObject(obj: any) {
+    return (obj && (Object.keys(obj).length === 0));
+  }
+
+  splitToChunks(array: any[], parts: number) {
+    this._images = [];
+    for (let i = parts; i > 0; i--) {
+      this._images.push(array.splice(0, Math.ceil(array.length / i)));
+    }
+  }
+
+  getColumnClass() {
+    if (this.isEmptyObject(this.options)) {
+      return 'filter-gallery-column-4';
+    }
+    else {
+      if ('columns' in this.options) {
+        switch (this.options.columns) {
+          case 2:
+            return 'filter-gallery-column-2';
+          case 3:
+            return 'filter-gallery-column-3';
+          case 4:
+            return 'filter-gallery-column-4';
+          case 5:
+            return 'filter-gallery-column-5';
+          default:
+            return 'filter-gallery-column-4';
+        }
+      }
+      else {
+        return 'filter-gallery-column-4';
+      }
+    }
+  }
+
+  imageFiltering(label: string) {
+    // get images related to the label
+    let filterImages: any[] = [];
+    let tempArray = this.images.slice();
+    // get all images
+    if (label == 'all') {
+      filterImages = tempArray;
+    }
+    else {
+      tempArray.forEach((item: AGFImages) => {
+        if (item.imageLabel == label) {
+          filterImages.push(item);
+        }
+      });
+    }
+    // split into chunks
+    if ('columns' in this.options) {
+      switch (this.options.columns) {
+        case 2:
+          this.splitToChunks(filterImages, 2);
+          break;
+        case 3:
+          this.splitToChunks(filterImages, 3);
+          break;
+        case 4:
+          this.splitToChunks(filterImages, 4);
+          break;
+        case 5:
+          this.splitToChunks(filterImages, 5);
+          break;
+        default:
+          this.splitToChunks(filterImages, 4);
+          break;
+      }
+    }
+    else {
+      this.splitToChunks(filterImages, 4);
+    }
   }
 
 }

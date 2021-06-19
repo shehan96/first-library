@@ -36,33 +36,53 @@
     flex-wrap: wrap;
 }
 
-.filter-gallery-column{
-    -ms-flex: 24%;
-    flex: 24%;
-    max-width: 25%;
-    padding: 0 8px;
+.filter-gallery-column-2{
+  -ms-flex: 49%;
+  flex: 49%;
+  max-width: 49%;
+  padding: 0 8px;
+}
+
+.filter-gallery-column-3{
+  -ms-flex: 32%;
+  flex: 32%;
+  max-width: 32%;
+  padding: 0 8px;
+}
+
+.filter-gallery-column-4{
+  -ms-flex: 24%;
+  flex: 24%;
+  max-width: 24%;
+  padding: 0 8px;
+}
+
+.filter-gallery-column-5{
+  -ms-flex: 19%;
+  flex: 19%;
+  max-width: 19%;
+  padding: 0 8px;
 }
 
 .filter-gallery-column img {
     margin-top: 16px;
     vertical-align: middle;
     width: 100%;
+    cursor: pointer;
 }
-  
-  /* Responsive layout - makes a two column-layout instead of four columns */
-  @media screen and (max-width: 800px) {
-    .filter-gallery-column {
-      -ms-flex: 50%;
-      flex: 50%;
-      max-width: 50%;
-    }
+
+@media screen and (max-width: 800px) {
+  .filter-gallery-column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
   }
-  
-  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .filter-gallery-column {
-      -ms-flex: 100%;
-      flex: 100%;
-      max-width: 100%;
-    }
+}
+
+@media screen and (max-width: 600px) {
+  .filter-gallery-column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
   }
+}

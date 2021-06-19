@@ -1,6 +1,7 @@
 {
   "name": "@shehan96/shehan-lib",
   "version": "0.0.3",
+  "description": "angular gallery filter",
   "peerDependencies": {
     "@angular/common": "^12.0.4",
     "@angular/core": "^12.0.4"
