@@ -11,7 +11,12 @@ export class AppComponent implements OnInit {
   // define variales
   labels: any[] = [{ label: 'label 1' }, { label: 'label 2' }, { label: 'label 3' }, { label: 'label 4' }];
   options: any = {
-    columns : 5
+    columns : 4,
+    imageCss : {
+      'border' : '5px solid #fff',
+      'border-radius' : '10px',
+      'box-shadow' : '1px 1px 10px 0px #cacaca'
+    }
   };
   images: any[] = [
     { imageUrl: 'https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706_1280.jpg', imageLabel: 'label 1' },

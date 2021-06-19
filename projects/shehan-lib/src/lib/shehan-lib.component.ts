@@ -11,6 +11,7 @@ export interface AGFImages {
 
 export interface AGFOptions {
   columns?: number;
+  imageCss?: any;
 }
 
 export interface AGFLabels {
@@ -55,7 +56,7 @@ export class ShehanLibComponent implements OnInit {
 
   // define variables for internal usage
   _images: any[];
-  isOpen: boolean = false;
+  _imageCss: any;
 
   constructor() { }
 
@@ -87,6 +88,16 @@ export class ShehanLibComponent implements OnInit {
       }
       else {
         this.splitToChunks(tempArray, 4);
+      }
+      // add image css
+      if('imageCss' in this.options){
+        this._imageCss = Object.assign({}, this.options.imageCss);
+      }
+      else{
+        this._imageCss = {
+          'border' : '5px solid #fff',
+          'box-shadow' : '1px 1px 10px 0px #cacaca'
+        };
       }
     }
   }
