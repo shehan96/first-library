@@ -1,6 +1,7 @@
 {
   "name": "first-library",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "angular project for creating an angular library",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
